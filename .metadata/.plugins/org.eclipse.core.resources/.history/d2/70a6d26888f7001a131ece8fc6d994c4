@@ -1,0 +1,9 @@
+package com.sarish.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.sarish.model.Library;
+
+public interface ManagementRepository extends JpaRepository<Library, Integer>{
+	
+}

@@ -1,0 +1,24 @@
+package com.sarish.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.sarish.model.Books;
+import com.sarish.model.Users;
+import com.sarish.repository.ManagementRepository;
+
+@Service
+public class LibraryService {
+	@Autowired
+	RestTemplate restTemplate;
+	@Autowired
+	private ManagementRepository repository;
+	
+	public String addBook(Users user) {
+		repository.save(user);
+		Books book = restTemplate.getForObject("http://localhost:8081/bs/getbyid/"+user.getBookId(),Books.class );
+		
+		return "Successfully added the book in your account";
+	}
+}
